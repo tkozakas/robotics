@@ -1,0 +1,45 @@
+# Robotika 7 Semestras
+
+## Setting up Arduino on Linux
+
+### Installation
+
+```bash
+sudo pacman -S arduino-cli
+```
+
+### Grant Temporary USB Permissions
+
+```bash
+sudo chmod a+rw /dev/ttyACM0
+```
+
+## Configure Arduino
+
+```bash
+arduino-cli config init
+arduino-cli core update-index
+arduino-cli core install arduino:avr
+```
+
+## Compiling and Uploading Sketches
+
+```bash
+arduino-cli compile --fqbn arduino:avr:uno StopWatch/StopWatch.ino
+arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno StopWatch/StopWatch.ino
+```
+
+## Useful commands
+
+### Install Libraries
+
+```bash
+arduino-cli lib search "LibraryName"
+arduino-cli lib install "LibraryName"
+```
+
+### List Installed Libraries
+
+```bash
+arduino-cli lib list
+```
