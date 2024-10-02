@@ -2,7 +2,6 @@
 *.elf
 *.hex
 *.o
-.vscode/
 .DS_Store
 build/
 *.tmp

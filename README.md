@@ -6,6 +6,7 @@
 
 ```bash
 sudo pacman -S arduino-cli
+sudo pacman -S screen
 ```
 
 ### Grant Temporary USB Permissions
@@ -42,4 +43,10 @@ arduino-cli lib install "LibraryName"
 
 ```bash
 arduino-cli lib list
+```
+
+### Real time arduino statements (useful for debugging)
+
+```bash
+screen /dev/ttyACM0 9600
 ```

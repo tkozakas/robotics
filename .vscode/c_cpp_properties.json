@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "name": "Arduino",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${env:HOME}/.arduino15/packages/arduino/hardware/avr/**",
+                "${env:HOME}/.arduino15/packages/arduino/hardware/avr/1.8.6/cores/**",
+                "${env:HOME}/.arduino15/packages/arduino/hardware/avr/1.8.6/libraries/**"
+            ],
+            "defines": [
+                "ARDUINO=10813",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO_AVR_UNO"
+            ],
+            "compilerPath": "/usr/bin/avr-gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ],
+    "version": 4
+}
