@@ -26,8 +26,8 @@ arduino-cli core install arduino:avr
 ## Compiling and Uploading Sketches
 
 ```bash
-arduino-cli compile --fqbn arduino:avr:uno StopWatch/StopWatch.ino
-arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno StopWatch/StopWatch.ino
+arduino-cli compile --fqbn arduino:avr:uno Timer/Timer.ino
+arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno Timer/Timer.ino
 ```
 
 ## Useful commands
