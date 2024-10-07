@@ -46,7 +46,7 @@ void timerISR()
 {
   if (running)
   {
-    elapsedTime++;
+    elapsedTime++; // 1 millisecond
   }
 }
 
