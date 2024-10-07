@@ -28,7 +28,7 @@ void setup()
   EEPROM.get(0, elapsedTime);
   displayTime();
 
-  Timer1.initialize(1000);
+  Timer1.initialize(1000); // 1 millisecond
   Timer1.attachInterrupt(timerISR);
 }
 
@@ -90,19 +90,27 @@ void displayTime()
   lcd.setCursor(0, 0);
 
   if (minutes < 10)
+  {
     lcd.print("0");
+  }
   lcd.print(minutes);
   lcd.print(":");
 
   if (seconds < 10)
+  {
     lcd.print("0");
+  }
   lcd.print(seconds);
   lcd.print(".");
 
   if (millisecs < 100)
+  {
     lcd.print("0");
+  }
   if (millisecs < 10)
+  {
     lcd.print("0");
+  }
   lcd.print(millisecs);
 }
 
