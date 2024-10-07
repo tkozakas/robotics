@@ -1,5 +1,6 @@
 #include <LiquidCrystal.h>
 #include <EEPROM.h>
+#include <TimerOne.h>
 
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
@@ -8,10 +9,12 @@ const int buttonStart = 8;
 const int buttonStop = 7;
 const int buttonReset = 6;
 
-unsigned long previousMillis = 0;
+volatile bool running = false;
 unsigned long elapsedTime = 0;
-bool running = false;
-const int buttonDelay = 500;
+unsigned long lastDebounceTimeStart = 0;
+unsigned long lastDebounceTimeStop = 0;
+unsigned long lastDebounceTimeReset = 0;
+const int debounceDelay = 50;
 
 void setup()
 {
@@ -24,7 +27,9 @@ void setup()
 
   EEPROM.get(0, elapsedTime);
   displayTime();
-  previousMillis = millis();
+
+  Timer1.initialize(1000);
+  Timer1.attachInterrupt(timerISR);
 }
 
 void loop()
@@ -33,42 +38,47 @@ void loop()
 
   if (running)
   {
-    updateStopwatch();
     displayTime();
   }
-  else
+}
+
+void timerISR()
+{
+  if (running)
   {
-    previousMillis = millis();
+    elapsedTime++;
   }
 }
 
 void handleButtonPresses()
 {
-  if (digitalRead(buttonStart) == LOW && !running)
+  if (digitalRead(buttonStart) == LOW)
   {
-    running = true;
-    delay(buttonDelay);
+    if ((millis() - lastDebounceTimeStart) > debounceDelay)
+    {
+      running = true;
+      lastDebounceTimeStart = millis();
+    }
   }
 
-  if (digitalRead(buttonStop) == LOW && running)
+  if (digitalRead(buttonStop) == LOW)
   {
-    running = false;
-    EEPROM.put(0, elapsedTime);
-    delay(buttonDelay);
+    if ((millis() - lastDebounceTimeStop) > debounceDelay)
+    {
+      running = false;
+      EEPROM.put(0, elapsedTime);
+      lastDebounceTimeStop = millis();
+    }
   }
 
-  if (digitalRead(buttonReset) == LOW && !running)
+  if (digitalRead(buttonReset) == LOW)
   {
-    resetStopwatch();
-    delay(buttonDelay);
+    if ((millis() - lastDebounceTimeReset) > debounceDelay)
+    {
+      resetStopwatch();
+      lastDebounceTimeReset = millis();
+    }
   }
-}
-
-void updateStopwatch()
-{
-  unsigned long currentMillis = millis();
-  elapsedTime += currentMillis - previousMillis;
-  previousMillis = currentMillis;
 }
 
 void displayTime()
