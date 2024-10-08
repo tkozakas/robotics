@@ -3,6 +3,7 @@
 ## Setting up Arduino on Linux
 
 ### Installation
+Download arduino-cli [here](https://arduino.github.io/arduino-cli/0.35/installation/)
 
 ```bash
 sudo pacman -S arduino-cli
