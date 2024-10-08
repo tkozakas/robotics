@@ -3,14 +3,13 @@
 ## Setting up Arduino on Linux
 
 ### Installation
-Download arduino-cli [here](https://arduino.github.io/arduino-cli/0.35/installation/)
-
+Download arduino-cli [here](https://arduino.github.io/arduino-cli/0.35/installation/) or if you are on linux:
 ```bash
 sudo pacman -S arduino-cli
 sudo pacman -S screen
 ```
 
-### Grant Temporary USB Permissions
+### Grant Temporary USB Permissions (linux)
 
 ```bash
 sudo chmod a+rw /dev/ttyACM0
