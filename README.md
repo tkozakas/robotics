@@ -13,6 +13,7 @@ sudo pacman -S screen
 
 ```bash
 sudo chmod a+rw /dev/ttyACM0
+sudo usermod -aG dialout $USER
 ```
 
 ## Configure Arduino
@@ -21,13 +22,14 @@ sudo chmod a+rw /dev/ttyACM0
 arduino-cli config init
 arduino-cli core update-index
 arduino-cli core install arduino:avr
+arduino-cli lib install "LiquidCrystal"
+arduino-cli lib install "TimerOne"
 ```
 
 ## Compiling and Uploading Sketches
 
 ```bash
-arduino-cli compile --fqbn arduino:avr:uno Timer/Timer.ino
-arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno Timer/Timer.ino
+arduino-cli compile --fqbn arduino:avr:uno Timer && arduino-cli upload -p /dev/ttyACM0 --fqbn arduino:avr:uno Timer
 ```
 
 ## Useful commands
@@ -47,6 +49,6 @@ arduino-cli lib list
 
 ### Real time arduino statements (useful for debugging)
 
-```bash
+```bash 
 screen /dev/ttyACM0 9600
 ```
