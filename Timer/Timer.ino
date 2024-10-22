@@ -9,7 +9,7 @@ const int buttonStart = 8;
 const int buttonStop = 7;
 const int buttonReset = 6;
 
-volatile bool running = false;
+bool running = false;
 unsigned long elapsedTime = 0;
 unsigned long lastDebounceTimeStart = 0;
 unsigned long lastDebounceTimeStop = 0;
