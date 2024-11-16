@@ -25,6 +25,7 @@ arduino-cli core install arduino:avr
 arduino-cli lib install "Servo"
 arduino-cli lib install "LiquidCrystal"
 arduino-cli lib install "TimerOne"
+arduino-cli lib install "DHT sensor library"
 ```
 
 ## Compiling and Uploading Sketches
